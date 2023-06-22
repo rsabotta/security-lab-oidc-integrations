@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/chr-fritz/security-lab-oidc-integrations
+  url: ssh://git@github.com/RSABOTTA/security-lab-oidc-integrations
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
