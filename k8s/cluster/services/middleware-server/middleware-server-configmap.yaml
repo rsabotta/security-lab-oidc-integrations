@@ -10,3 +10,17 @@ data:
     hello:
       backend:
         url: http://backend-service.services/hello
+    spring:
+      security:
+        oauth2:
+          resourceserver:
+            jwt:
+              issuer-uri: http://keycloak.infrastructure/realms/security-lab
+              audiences:
+                - middleware-server
+              jwk-set-uri: http://keycloak.infrastructure/realms/security-lab/protocol/openid-connect/certs
+    middleware:
+      token-endpoint: http://keycloak.infrastructure/realms/security-lab/protocol/openid-connect/token
+      client-id: middleware-server
+      client-secret: QrEoEQ1zPnDpXZbOIdt7GTZi17EfQY3c
+      exchange-token: true

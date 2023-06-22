@@ -16,7 +16,14 @@ public class BeanConfiguration {
     }
 
     @Bean
-    RestTemplate rest(HttpClient httpClient) {
-        return new RestTemplate(new HttpComponentsClientHttpRequestFactory(httpClient));
+    RestTemplate rest(HttpClient httpClient, ConfigProperties properties,
+                      TokenExchangeHttpRequestInterceptor tokenExchangeInterceptor, TokenForwardHttpRequestInterceptor tokenForwardInterceptor) {
+        RestTemplate rest = new RestTemplate(new HttpComponentsClientHttpRequestFactory(httpClient));
+        if (properties.isExchangeToken()) {
+            rest.getInterceptors().add(tokenExchangeInterceptor);
+        } else {
+            rest.getInterceptors().add(tokenForwardInterceptor);
+        }
+        return rest;
     }
 }
